@@ -59,7 +59,7 @@ public class Supplier_Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (response.contains("1")){
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(),Supplier_Dashboard.class));
                 }else {
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
                 }

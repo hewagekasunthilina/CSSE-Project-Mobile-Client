@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Supplier_Register"></activity>
+        <activity android:name=".Site_Manager_Dashboard"></activity>
+        <activity android:name=".Supplier_Dashboard" />
+        <activity android:name=".Supplier_Register" />
         <activity
             android:name=".Supplier_Login"
             android:screenOrientation="portrait" />
