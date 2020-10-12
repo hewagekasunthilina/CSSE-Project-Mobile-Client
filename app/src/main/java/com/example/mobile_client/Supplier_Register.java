@@ -2,6 +2,7 @@ package com.example.mobile_client;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -51,7 +52,6 @@ public class Supplier_Register extends AppCompatActivity {
                 AsyncTask.execute(new Runnable() {
                     @Override
                     public void run() {
-                        //TODO your background code
                         OkHttpClient client = new OkHttpClient().newBuilder()
                                 .build();
                         MediaType mediaType = MediaType.parse("text/plain");
@@ -70,6 +70,12 @@ public class Supplier_Register extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+                        opensupsigninpage();
+                    }
+
+                    private void opensupsigninpage() {
+                        Intent intent = new Intent(Supplier_Register.this, Supplier_Login.class);
+                        startActivity(intent);
                     }
                 });
             }
