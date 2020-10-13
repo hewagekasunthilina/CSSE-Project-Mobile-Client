@@ -51,7 +51,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (response.contains("1")){
-                    startActivity(new Intent(getApplicationContext(),Site_Manager_Dashboard.class));
+                    startActivity(new Intent(getApplicationContext(),View_PO.class));
                 }else {
                     Toast.makeText(getApplicationContext(),"Wrong Username or Password",Toast.LENGTH_SHORT).show();
                 }

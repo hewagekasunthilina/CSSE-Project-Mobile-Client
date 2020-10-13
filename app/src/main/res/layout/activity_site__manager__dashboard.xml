@@ -6,4 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Site_Manager_Dashboard">
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="276dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="472dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
