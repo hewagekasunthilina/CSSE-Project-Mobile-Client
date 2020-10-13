@@ -4,13 +4,13 @@ public class Po {
     private Integer OrderID;
     private String RefNo, Material,Description,Supplier;
     private Double Price;
-    private Float Quantity;
+    private Double Quantity;
     private String Site,DelDate;
 
-    public Po(String orderID, String refNo, String material, String description, String supplier, String price, String quantity, String site, String delDate) {
+    public Po(Integer orderID, String refNo, String material, String description, String supplier, Double price, String quantity, String site, String delDate) {
     }
 
-    public Po(Integer orderID, String refNo, String material, String description, String supplier, Double price, Float quantity, String site, String delDate) {
+    public Po(Integer orderID, String refNo, String material, String description, String supplier, Double price, Double quantity, String site, String delDate) {
         OrderID = orderID;
         RefNo = refNo;
         Material = material;
@@ -70,11 +70,11 @@ public class Po {
         Price = price;
     }
 
-    public Float getQuantity() {
+    public Double getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(Float quantity) {
+    public void setQuantity(Double quantity) {
         Quantity = quantity;
     }
 

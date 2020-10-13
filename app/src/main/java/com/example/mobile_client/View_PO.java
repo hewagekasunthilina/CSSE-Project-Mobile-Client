@@ -58,13 +58,13 @@ public class View_PO extends AppCompatActivity {
                         for (int i = 0; i < jsonArray.length(); i++){
                             JSONObject object = jsonArray.getJSONObject(i);
 
-                            String OrderID = object.getString("OrderID");
+                            Integer OrderID = object.getInt("OrderID");
                             String RefNo = object.getString("RefNo");
                             String Material = object.getString("Material");
                             String Description = object.getString("Description");
                             String Supplier = object.getString("Supplier");
-                            String Price = object.getString("Price");
-                            String Quantity = object.getString("Quantity");
+                            Double Price = object.getDouble("Price");
+                            Double Quantity = object.getDouble("Quantity");
                             String Site = object.getString("Site");
                             String DelDate = object.getString("DelDate");
 
