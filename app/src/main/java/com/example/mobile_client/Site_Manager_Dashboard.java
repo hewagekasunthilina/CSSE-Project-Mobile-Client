@@ -25,5 +25,14 @@ public class Site_Manager_Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        create = (CardView)findViewById(R.id.CreatePO);
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(Site_Manager_Dashboard.this, Po_Create.class);
+                startActivity(intent1);
+            }
+        });
     }
 }
