@@ -72,7 +72,7 @@ public class Po_Create extends AppCompatActivity {
                                 .addFormDataPart("RefNo", RefNo.getText().toString())
                                 .addFormDataPart("Material", Material.getText().toString())
                                 .addFormDataPart("Description", Description.getText().toString())
-                                .addFormDataPart("Supplier", spinner1.toString())
+                                .addFormDataPart("Supplier", spinner1.getSelectedItem().toString())
                                 .addFormDataPart("Price", Price.getText().toString())
                                 .addFormDataPart("Quantity", Quantity.getText().toString())
                                 .addFormDataPart("Site", Site.getText().toString())
