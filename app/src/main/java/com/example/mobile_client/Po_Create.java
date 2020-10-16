@@ -77,8 +77,8 @@ public class Po_Create extends AppCompatActivity {
                                 .addFormDataPart("Quantity", Quantity.getText().toString())
                                 .addFormDataPart("Site", Site.getText().toString())
                                 .addFormDataPart("DelDate", DelDate.getText().toString())
-                                .addFormDataPart("Status", Status.getText().toString())
-                                .addFormDataPart("CheckedBy", CheckedBy.getText().toString())
+                                //.addFormDataPart("Status", Status.getText().toString())
+                                //.addFormDataPart("CheckedBy", CheckedBy.getText().toString())
                                 .build();
                         okhttp3.Request request = new okhttp3.Request.Builder()
                                 .url("http://mail.dimodigital.lk/create_po.php")
