@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -14,14 +16,17 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +37,13 @@ import okhttp3.RequestBody;
 
 public class Supplier_Register extends AppCompatActivity {
 
-    private TextInputEditText name,Email,ContactNo,Password;
+    private TextInputEditText name,Email,ContactNo,Password, price;
     private Button register;
+    private Spinner material;
+
+    ArrayList<String> materialList = new ArrayList<>();
+    ArrayAdapter<String> materialAdapter;
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +55,8 @@ public class Supplier_Register extends AppCompatActivity {
         ContactNo = (TextInputEditText)findViewById(R.id.ContactNo);
         Password = (TextInputEditText)findViewById(R.id.Password);
         register = (Button)findViewById(R.id.btnRegister);
+        material = (Spinner)findViewById(R.id.MaterialSpinner);
+        price = (TextInputEditText)findViewById(R.id.Price);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +72,8 @@ public class Supplier_Register extends AppCompatActivity {
                                 .addFormDataPart("Email", Email.getText().toString())
                                 .addFormDataPart("ContactNo", ContactNo.getText().toString())
                                 .addFormDataPart("password", Password.getText().toString())
+                                .addFormDataPart("Material", material.getSelectedItem().toString())
+                                .addFormDataPart("Price", price.getText().toString())
                                 .build();
                         okhttp3.Request request = new okhttp3.Request.Builder()
                                 .url("http://mail.dimodigital.lk/supregister.php")
@@ -74,12 +88,42 @@ public class Supplier_Register extends AppCompatActivity {
                     }
 
                     private void opensupsigninpage() {
-                        Intent intent = new Intent(Supplier_Register.this, Supplier_Login.class);
+                        Intent intent = new Intent(Supplier_Register.this, Supplier_Dashboard.class);
                         startActivity(intent);
                     }
                 });
             }
         });
+
+        requestQueue = Volley.newRequestQueue(this);
+        material = (Spinner)findViewById(R.id.MaterialSpinner);
+        String url = "http://mail.dimodigital.lk/material.php";
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray jsonArray = response.getJSONArray("material");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String materialName = jsonObject.optString("MatName");
+                        materialList.add(materialName);
+                        materialAdapter = new ArrayAdapter<>(Supplier_Register.this, android.R.layout.simple_spinner_item, materialList);
+                        materialAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        material.setAdapter(materialAdapter);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        requestQueue.add(jsonObjectRequest);
     }
 
     private void Register(){
