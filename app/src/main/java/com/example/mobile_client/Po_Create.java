@@ -55,8 +55,6 @@ public class Po_Create extends AppCompatActivity {
         Quantity = (TextInputEditText) findViewById(R.id.Quantity);
         Site = (TextInputEditText) findViewById(R.id.Site);
         DelDate = (TextInputEditText) findViewById(R.id.DelDate);
-        Status = (TextInputEditText) findViewById(R.id.Status);
-        CheckedBy = (TextInputEditText) findViewById(R.id.CheckedBy);
 
         po = (Button) findViewById(R.id.addPo);
 

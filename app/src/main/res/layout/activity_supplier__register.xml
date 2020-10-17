@@ -50,6 +50,7 @@
                 android:drawableRight="@drawable/ic_user"
                 android:fontFamily="@font/poppinsmedium"
                 tools:targetApi="jelly_bean" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -158,9 +159,21 @@
         android:id="@+id/MaterialSpinner"
         android:layout_width="353dp"
         android:layout_height="44dp"
-        android:layout_marginBottom="188dp"
+        android:layout_marginBottom="136dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.586"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="210dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sup" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
