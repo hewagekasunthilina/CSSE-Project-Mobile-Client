@@ -61,37 +61,57 @@ public class Supplier_Register extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        OkHttpClient client = new OkHttpClient().newBuilder()
-                                .build();
-                        MediaType mediaType = MediaType.parse("text/plain");
-                        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                                .addFormDataPart("name", name.getText().toString())
-                                .addFormDataPart("Email", Email.getText().toString())
-                                .addFormDataPart("ContactNo", ContactNo.getText().toString())
-                                .addFormDataPart("password", Password.getText().toString())
-                                .addFormDataPart("Material", material.getSelectedItem().toString())
-                                .addFormDataPart("Price", price.getText().toString())
-                                .build();
-                        okhttp3.Request request = new okhttp3.Request.Builder()
-                                .url("http://mail.dimodigital.lk/supregister.php")
-                                .method("POST", body)
-                                .build();
-                        try {
-                            okhttp3.Response response = client.newCall(request).execute();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        opensupsigninpage();
-                    }
 
-                    private void opensupsigninpage() {
-                        Intent intent = new Intent(Supplier_Register.this, Supplier_Dashboard.class);
-                        startActivity(intent);
-                    }
-                });
+                String NameInput = name.getText().toString().trim();
+                String EmailInput = Email.getText().toString().trim();
+                String ContactInput = ContactNo.getText().toString().trim();
+                String MaterialInput = Password.getText().toString().trim();
+                String PriceInput = price.getText().toString().trim();
+
+                if(NameInput.isEmpty()){
+                    name.setError("Name Can't be Empty");
+                } else if(EmailInput.isEmpty()){
+                    Email.setError("Email Can't be Empty");
+                } else if(ContactInput.isEmpty()){
+                    ContactNo.setError("Contact Number Can't be Empty");
+                } else if(MaterialInput.isEmpty()){
+                    Password.setError("Password Can't be Empty");
+                } else if(PriceInput.isEmpty()){
+                    price.setError("Price Can't be Empty");
+                } else {
+
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            OkHttpClient client = new OkHttpClient().newBuilder()
+                                    .build();
+                            MediaType mediaType = MediaType.parse("text/plain");
+                            RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                                    .addFormDataPart("name", name.getText().toString())
+                                    .addFormDataPart("Email", Email.getText().toString())
+                                    .addFormDataPart("ContactNo", ContactNo.getText().toString())
+                                    .addFormDataPart("password", Password.getText().toString())
+                                    .addFormDataPart("Material", material.getSelectedItem().toString())
+                                    .addFormDataPart("Price", price.getText().toString())
+                                    .build();
+                            okhttp3.Request request = new okhttp3.Request.Builder()
+                                    .url("http://mail.dimodigital.lk/supregister.php")
+                                    .method("POST", body)
+                                    .build();
+                            try {
+                                okhttp3.Response response = client.newCall(request).execute();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            opensupsigninpage();
+                        }
+
+                        private void opensupsigninpage() {
+                            Intent intent = new Intent(Supplier_Register.this, Supplier_Dashboard.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
         });
 
