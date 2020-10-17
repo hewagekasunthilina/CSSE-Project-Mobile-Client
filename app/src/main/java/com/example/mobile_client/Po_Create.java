@@ -17,8 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +32,7 @@ import okhttp3.RequestBody;
 
 public class Po_Create extends AppCompatActivity {
 
+    //Create onbjects
     Spinner spinner1;
     ArrayList<String> materialList = new ArrayList<>();
     ArrayAdapter<String> materialAdapter;
@@ -47,6 +46,7 @@ public class Po_Create extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_po__create);
 
+        //Layouts ID confirmation
         RefNo = (TextInputEditText) findViewById(R.id.RefNo);
         Material = (TextInputEditText) findViewById(R.id.Material);
         Description = (TextInputEditText) findViewById(R.id.Description);
@@ -59,10 +59,13 @@ public class Po_Create extends AppCompatActivity {
         CheckedBy = (TextInputEditText) findViewById(R.id.CheckedBy);
 
         po = (Button) findViewById(R.id.addPo);
+
+        //utton click start
         po.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //Validation start
                 String NameInput = RefNo.getText().toString().trim();
                 String MaterialInput = Material.getText().toString().trim();
                 String DescInput = Description.getText().toString().trim();
@@ -71,6 +74,7 @@ public class Po_Create extends AppCompatActivity {
                 String SiteInput = Site.getText().toString().trim();
                 String DateInput = DelDate.getText().toString().trim();
 
+                //Check the empty fields
                 if (NameInput.isEmpty()) {
                     RefNo.setError("Reference Number Can't be Empty");
                 } else if (MaterialInput.isEmpty()) {
@@ -125,10 +129,12 @@ public class Po_Create extends AppCompatActivity {
             }
         });
 
+        //Request for material list
         requestQueue = Volley.newRequestQueue(this);
         spinner1 = (Spinner) findViewById(R.id.spinner);
         String url = "http://mail.dimodigital.lk/supplier_list.php";
 
+        //Retrieve valus into JSON object
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
